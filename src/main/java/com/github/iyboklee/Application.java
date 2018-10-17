@@ -20,15 +20,16 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        log.info(".... Fetching books from slow repository");
         fetchBooks();
 
+        log.info(".... Fetching books from ignite cache");
         fetchBooks();
 
         System.exit(SpringApplication.exit(context));
     }
 
     private void fetchBooks() {
-        log.info(".... Fetching books");
         log.info("isbn-1234 --> {}", bookRepository.findByIsbn("isbn-1234"));
         log.info("isbn-1235 --> {}", bookRepository.findByIsbn("isbn-1235"));
         log.info("isbn-1236 --> {}", bookRepository.findByIsbn("isbn-1236"));
